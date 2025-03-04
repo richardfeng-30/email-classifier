@@ -46,9 +46,6 @@ for i in range(len(train_x)):
             else:
                 ham_dictionary[word] = 1
 
-print(ham_dictionary)
-
-
 # train accuracy
 correct = 0
 for i in range(len(train_x)):
@@ -69,10 +66,9 @@ for i in range(len(train_x)):
         if train_y[i] == 0:
             correct += 1
         
-print(correct)
 print("train accuracy", correct / len(train_x))
 
-# test accuracy
+# validation accuracy
 correct = 0
 for i in range(len(test_x)):
     wordList = test_x[i].split()
@@ -84,7 +80,6 @@ for i in range(len(test_x)):
             spam_words += 1
         if word in ham_dictionary.keys():
             ham_words += 1
-    # print(spam_words, ham_words)
 
     if spam_words >= ham_words:
         if test_y[i] == 1:
@@ -93,5 +88,4 @@ for i in range(len(test_x)):
         if test_y[i] == 0:
             correct += 1
         
-print(correct)
-print("test accuracy", correct / len(test_x))
+print("validation accuracy", correct / len(test_x))
