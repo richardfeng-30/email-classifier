@@ -47,7 +47,10 @@ for i in range(len(train_x)):
 
 # train accuracy
 print("train accuracy:")
-for i in range(50):
+last_accuracy = -1
+accuracy = 0
+i = 0
+while accuracy - last_accuracy > 0.001 or accuracy < 0.99:
     correct = 0
     for j in range(len(train_x)):
         wordList = train_x[j].split()
@@ -69,8 +72,10 @@ for i in range(50):
             else:
                 for word in wordList:
                     dictionary[word] += 1
-        
-    print(i + 1, "-", correct / len(train_x))
+    last_accuracy = accuracy
+    accuracy = correct / len(train_x)
+    print(i + 1, "-", accuracy)
+    i += 1
 
 
 # validation
